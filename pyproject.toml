@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "langserve-ollama"
+name = "mira-llm-serve"
 version = "0.1.0"
 description = ""
-authors = ["teddy <teddylee777@gmail.com>"]
+authors = ["Julio Kim <julio@pnoni.com>"]
 license = "MIT License"
 readme = "README.md"
 
