@@ -170,3 +170,7 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 * http://localhost:8000/prompt/playground
 
 ![mira-llm-serve-res-04](https://github.com/miracom-genai/mira-llm-serve/assets/5626425/d04c1123-bc5f-4271-a477-ee81e8e0b90d)
+
+## II. References
+
+* https://github.com/teddylee777/langserve_ollama
