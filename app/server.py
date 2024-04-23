@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI, Header, HTTPException
+from typing_extensions import Annotated
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Union
@@ -9,9 +10,20 @@ from chain import chain
 from chat import chain as chat_chain
 from translator import chain as EN_TO_KO_chain
 from llm import llm as model
+from langchain_chain import rag_chain
 
+# async def verify_token(x_token: Annotated[str, Header()]) -> None:
+#     """Verify the token is valid."""
+#     # Replace this with your actual authentication logic
+#     if x_token != "secret-token":
+#         raise HTTPException(status_code=400, detail="X-Token header invalid")
 
-app = FastAPI()
+app = FastAPI(
+    title="Miracom LLM Service",
+    version="1.0",
+    # dependencies=[Depends(verify_token)],
+    description="Miracom LLM Service provides a solution to build and deploy customised conversational AI models using your internal data."
+)
 
 # Set all CORS enabled origins
 app.add_middleware(
@@ -26,8 +38,10 @@ app.add_middleware(
 
 @app.get("/")
 async def redirect_root_to_docs():
-    return RedirectResponse("/prompt/playground")
+    return RedirectResponse("/langchain/playground")
 
+
+add_routes(app, rag_chain, path="/langchain")
 
 add_routes(app, chain, path="/prompt")
 
